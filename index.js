@@ -9,14 +9,14 @@ app.set('views', path.join(__dirname, '/views'));
 app.use(express.static(path.join(__dirname + '/public/')));
 
 app.get('/', (req,res) =>{
-    res.render('home.ejs')
+    res.render('home', {name: 'Home' })
 })
 
 app.get('/dogs', (req, res) =>{
     const dogs = [
         'Amber', 'Cody', 'Jasper', 'Merlin', 'Shadow'
     ] 
-      res.render('dogs', { dogs });
+      res.render('dogs', { dogs, name:'Dogs' });
 })
 
 app.get('/r/:subreddit', (req, res) =>{
@@ -32,7 +32,7 @@ app.get('/r/:subreddit', (req, res) =>{
 
 app.get('/random', (req,res) =>{
     const num = Math.floor(Math.random() * 10) + 1;
-    res.render('random', {num});
+    res.render('random', {num, name: 'Random Number' });
 })
 
 app.listen(3000, () => {
